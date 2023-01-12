@@ -57,10 +57,10 @@
 ## About The Project
 
 Login window:
-[![Product Login Screen Shot][product-screenshot-2]]
+[Product Login Screen Shot][product-screenshot-2]
 
 API key grid:
-[![Product Grid Screen Shot][product-screenshot]]
+[Product Grid Screen Shot][product-screenshot]]
 
 
 I started this project just for fun, currently its just my hobby and it might grow out into something more.
