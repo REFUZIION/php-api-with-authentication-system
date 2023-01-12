@@ -20,7 +20,7 @@
   <p align="center">
     An PHP API that can provide information to all sorts of applications.
     <br />
-    <a href="https://github.com/REFUZIION/php-api-with-authentication-system"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/REFUZIION/php-api-with-authentication-system"><strong>Explore the repo »</strong></a>
     <br />
     <br />
     <a href="https://github.com/REFUZIION/php-api-with-authentication-system/issues">Report Bug</a>
