@@ -54,9 +54,9 @@ function generateAPIKey() {
             alert("An error has occured, Please try again");
         }
     }
-    xhr.send("token=" + newToken);
+    xhr.send("token=" + newToken.toUpperCase());
 }
-  
+
 function deleteAPIKey(id) {
     var xhr = new XMLHttpRequest();
     xhr.open("DELETE", "delete_api_key.php?id=" + id, true);
