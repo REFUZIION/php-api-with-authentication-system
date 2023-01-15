@@ -5,6 +5,7 @@ function showEditModal(apiKeyId) {
     // Set the current API key value in the form
     document.getElementById("apiKeyId").value = apiKeyId;
     document.getElementById("apiKey").value = apiKey;
+    document.getElementById("masterKey").value = masterKey;
 
     // Show the modal
     document.getElementById("editModal").style.display = "block";
@@ -19,10 +20,16 @@ function updateAPIKey() {
     // Get the API key ID and value from the form
     var apiKeyId = document.getElementById("apiKeyId").value;
     var apiKey = document.getElementById("apiKey").value;
+    var masterKeyStr = document.getElementById("apiKey").value;
+    if (masterKeyStr === "Yes") {
+        masterKey = 1;
+    } else {
+        masterKey = 0;
+    }
     console.log(apiKey + apiKeyId);
     // Use AJAX to send a PUT request to update the API key in the database
     var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "update_api_key.php?id=" + apiKeyId + "&token=" + apiKey);
+    xhr.open("PUT", "update_api_key.php?id=" + apiKeyId + "&token=" + apiKey + "&master_key=" + masterKey);
     xhr.onload = function() {
         if (xhr.status === 200) {
             // Update the API key in the grid

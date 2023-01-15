@@ -49,12 +49,13 @@ if(isset($_GET['end_session'])) {
                         <tr>
                             <th>ID</th>
                             <th>Token</th>
+                            <th>Master key</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $stmt = $db->prepare("SELECT id, token FROM authentication_tokens");
+                            $stmt = $db->prepare("SELECT id, token, master_key FROM authentication_tokens");
                             $stmt->execute();
                             $result = $stmt->get_result();
                             if ($result->num_rows === 0) {
@@ -67,9 +68,15 @@ if(isset($_GET['end_session'])) {
                                 echo '</tr>';
                             }
                             while ($row = $result->fetch_assoc()) {
+                                if ($row['master_key'] === 1) {
+                                    $master_key = "Yes";
+                                } else {
+                                    $master_key = "No";
+                                }
                                 echo '<tr>';
                                 echo '<td>' . $row['id'] . '</td>';
                                 echo '<td data-id="'.$row['id'].'">' . $row['token'] . '</td>';
+                                echo '<td data-id="'.$row['id'].'">' . $master_key . '</td>';
                                 echo '<td>
                                         <button class="edit-btn" onclick="showEditModal('. $row['id'].');">Edit</button>
                                         <button class="delete-btn" onclick="confirmDelete('.$row['id'].')">Delete</button>
@@ -85,6 +92,11 @@ if(isset($_GET['end_session'])) {
                         <input type="hidden" id="apiKeyId" value="">
                         <label for="apiKey">API Key:</label>
                         <input type="text" id="apiKey" value="">
+                        <label for="masterKey">Master Key:</label>
+                        <select name="masterKey" id="masterKey" value="2">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
                         <button type="button" onclick="updateAPIKey();">Update</button>
                         <button type="button" onclick="hideEditModal();">Cancel</button>
                     </form>
