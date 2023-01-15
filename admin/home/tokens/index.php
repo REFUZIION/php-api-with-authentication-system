@@ -28,7 +28,6 @@ if(isset($_GET['end_session'])) {
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-<script src="auth/tokens/tokens.js"></script>
     <div class="main">
         <div class="header-container">
             <div class="column logo-wrapper">
@@ -58,7 +57,15 @@ if(isset($_GET['end_session'])) {
                             $stmt = $db->prepare("SELECT id, token FROM authentication_tokens");
                             $stmt->execute();
                             $result = $stmt->get_result();
-
+                            if ($result->num_rows === 0) {
+                                echo '<tr>';
+                                echo '<td>
+                                        No results in table `authentication_tokens`.
+                                    </td>';
+                                echo '<td>N/A</td>';
+                                echo '<td>N/A</td>';
+                                echo '</tr>';
+                            }
                             while ($row = $result->fetch_assoc()) {
                                 echo '<tr>';
                                 echo '<td>' . $row['id'] . '</td>';
